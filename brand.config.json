@@ -86,7 +86,7 @@
         },
         "hostname": {
             "production": {
-                "com": "frostydbot.site"
+                "com": "www.frostydbot.site"
             },
             "staging": {
                 "com": "staging.frostydbot.site"
