@@ -8,13 +8,17 @@ import { LabelPairedCircleStarCaptionBoldIcon } from '@deriv/quill-icons/LabelPa
 import { Localize } from '@deriv-com/translations';
 import './free-bots.scss';
 
+type BotCategory = 'Advanced Bots' | 'Premium' | 'Even Odd' | 'Normal' | 'Automated' | 'Differs';
+
+const BOT_CATEGORIES: BotCategory[] = ['Advanced Bots', 'Premium', 'Even Odd', 'Normal', 'Automated', 'Differs'];
+
 const FREE_BOTS = [
     {
         id: 'martingale',
         xml_file: 'martingale',
         name: 'Martingale',
         description: 'Doubles the stake after each loss to recover previous losses with a single win.',
-        category: 'Strategy',
+        category: 'Advanced Bots' as BotCategory,
         difficulty: 'Intermediate',
     },
     {
@@ -22,7 +26,7 @@ const FREE_BOTS = [
         xml_file: 'dalembert',
         name: "D'Alembert",
         description: 'Increases stake by one unit after a loss and decreases by one unit after a win.',
-        category: 'Strategy',
+        category: 'Advanced Bots' as BotCategory,
         difficulty: 'Beginner',
     },
     {
@@ -30,7 +34,7 @@ const FREE_BOTS = [
         xml_file: 'oscars_grind',
         name: "Oscar's Grind",
         description: 'A conservative positive progression system aimed at grinding out small profits.',
-        category: 'Strategy',
+        category: 'Advanced Bots' as BotCategory,
         difficulty: 'Beginner',
     },
     {
@@ -38,7 +42,7 @@ const FREE_BOTS = [
         xml_file: 'reverse_martingale',
         name: 'Reverse Martingale',
         description: 'Doubles the stake after each win, capitalising on winning streaks while limiting losses.',
-        category: 'Strategy',
+        category: 'Advanced Bots' as BotCategory,
         difficulty: 'Intermediate',
     },
     {
@@ -46,7 +50,7 @@ const FREE_BOTS = [
         xml_file: 'reverse_dalembert',
         name: "Reverse D'Alembert",
         description: 'Increases stake by one unit after a win and decreases by one after a loss.',
-        category: 'Strategy',
+        category: 'Advanced Bots' as BotCategory,
         difficulty: 'Beginner',
     },
     {
@@ -54,7 +58,7 @@ const FREE_BOTS = [
         xml_file: '1_3_2_6',
         name: '1-3-2-6',
         description: 'A structured stake-progression system following the 1-3-2-6 sequence across consecutive wins.',
-        category: 'Strategy',
+        category: 'Advanced Bots' as BotCategory,
         difficulty: 'Advanced',
     },
 ];
@@ -69,6 +73,7 @@ const FreeBots = observer(() => {
     const { dashboard } = useStore();
     const { setActiveTab } = dashboard;
     const [importing, setImporting] = useState<string | null>(null);
+    const [activeCategory, setActiveCategory] = useState<BotCategory>('Advanced Bots');
 
     const handleImport = async (bot: (typeof FREE_BOTS)[number]) => {
         setImporting(bot.id);
@@ -108,6 +113,8 @@ const FreeBots = observer(() => {
         }
     };
 
+    const bots_in_category = FREE_BOTS.filter(bot => bot.category === activeCategory);
+
     return (
         <div className='free-bots'>
             <div className='free-bots__header'>
@@ -118,42 +125,59 @@ const FreeBots = observer(() => {
                     <Localize i18n_default_text='Click "Import to Builder" to load any strategy directly into your Bot Builder workspace.' />
                 </p>
             </div>
-            <div className='free-bots__grid'>
-                {FREE_BOTS.map(bot => {
-                    const is_loading = importing === bot.id;
-                    return (
-                        <div key={bot.id} className='free-bots__card'>
-                            <div className='free-bots__card-icon'>
-                                <LabelPairedCircleStarCaptionBoldIcon height='32px' width='32px' fill='#f7c53b' />
-                            </div>
-                            <div className='free-bots__card-body'>
-                                <div className='free-bots__card-top'>
-                                    <span className='free-bots__card-category'>{bot.category}</span>
-                                    <span
-                                        className='free-bots__card-difficulty'
-                                        style={{ color: DIFFICULTY_COLORS[bot.difficulty] }}
-                                    >
-                                        {bot.difficulty}
-                                    </span>
-                                </div>
-                                <h3 className='free-bots__card-name'>{bot.name}</h3>
-                                <p className='free-bots__card-description'>{bot.description}</p>
-                            </div>
-                            <button
-                                className={`free-bots__card-btn${is_loading ? ' free-bots__card-btn--loading' : ''}`}
-                                onClick={() => handleImport(bot)}
-                                disabled={is_loading}
-                            >
-                                {is_loading ? (
-                                    <Localize i18n_default_text='Importing…' />
-                                ) : (
-                                    <Localize i18n_default_text='Import to Builder' />
-                                )}
-                            </button>
-                        </div>
-                    );
-                })}
+            <div className='free-bots__category-tabs'>
+                {BOT_CATEGORIES.map(category => (
+                    <button
+                        key={category}
+                        className={`free-bots__category-tab${activeCategory === category ? ' free-bots__category-tab--active' : ''}`}
+                        onClick={() => setActiveCategory(category)}
+                    >
+                        {category}
+                    </button>
+                ))}
             </div>
+            {bots_in_category.length > 0 ? (
+                <div className='free-bots__grid'>
+                    {bots_in_category.map(bot => {
+                        const is_loading = importing === bot.id;
+                        return (
+                            <div key={bot.id} className='free-bots__card'>
+                                <div className='free-bots__card-icon'>
+                                    <LabelPairedCircleStarCaptionBoldIcon height='32px' width='32px' fill='#f7c53b' />
+                                </div>
+                                <div className='free-bots__card-body'>
+                                    <div className='free-bots__card-top'>
+                                        <span className='free-bots__card-category'>{bot.category}</span>
+                                        <span
+                                            className='free-bots__card-difficulty'
+                                            style={{ color: DIFFICULTY_COLORS[bot.difficulty] }}
+                                        >
+                                            {bot.difficulty}
+                                        </span>
+                                    </div>
+                                    <h3 className='free-bots__card-name'>{bot.name}</h3>
+                                    <p className='free-bots__card-description'>{bot.description}</p>
+                                </div>
+                                <button
+                                    className={`free-bots__card-btn${is_loading ? ' free-bots__card-btn--loading' : ''}`}
+                                    onClick={() => handleImport(bot)}
+                                    disabled={is_loading}
+                                >
+                                    {is_loading ? (
+                                        <Localize i18n_default_text='Importing…' />
+                                    ) : (
+                                        <Localize i18n_default_text='Import to Builder' />
+                                    )}
+                                </button>
+                            </div>
+                        );
+                    })}
+                </div>
+            ) : (
+                <div className='free-bots__empty'>
+                    <Localize i18n_default_text='No bots in this category yet. Check back soon!' />
+                </div>
+            )}
         </div>
     );
 });
