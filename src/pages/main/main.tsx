@@ -87,7 +87,7 @@ const AppWrapper = observer(() => {
     const { clear } = summary_card;
     const { DASHBOARD, BOT_BUILDER } = DBOT_TABS;
     const init_render = React.useRef(true);
-    const hash = ['dashboard', 'bot_builder', 'free_bots', 'd_circles', 'analysis_tool', 'chart', 'analysis', 'tutorial', 'copy_trading', 'market_analyzer'];
+    const hash = ['dashboard', 'bot_builder', 'free_bots', 'd_circles', 'analysis_tool', 'market_analyzer', 'chart', 'copy_trading', 'analysis', 'tutorial'];
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
@@ -472,6 +472,26 @@ const AppWrapper = observer(() => {
                             <div
                                 label={
                                     <>
+                                        <LabelPairedChartCandlestickCaptionRegularIcon
+                                            height='24px'
+                                            width='24px'
+                                            fill='var(--text-general)'
+                                        />
+                                        <Localize i18n_default_text='Market Analyzer' />
+                                    </>
+                                }
+                                id='id-market-analyzer'
+                            >
+                                <iframe
+                                    src='https://bot-analysis-tool-belex.web.app'
+                                    title='Market Analyzer'
+                                    style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+                                    allow='clipboard-read; clipboard-write'
+                                />
+                            </div>
+                            <div
+                                label={
+                                    <>
                                         <LabelPairedChartLineCaptionRegularIcon
                                             height='24px'
                                             width='24px'
@@ -491,6 +511,21 @@ const AppWrapper = observer(() => {
                                 >
                                     <ChartWrapper show_digits_stats={false} />
                                 </Suspense>
+                            </div>
+                            <div
+                                label={
+                                    <>
+                                        <LabelPairedCopyCaptionRegularIcon
+                                            height='24px'
+                                            width='24px'
+                                            fill='var(--text-general)'
+                                        />
+                                        <Localize i18n_default_text='Copy Trading' />
+                                    </>
+                                }
+                                id='id-copy-trading'
+                            >
+                                <CopyTrading />
                             </div>
                             <div
                                 label={
@@ -530,41 +565,6 @@ const AppWrapper = observer(() => {
                                         <Tutorial handleTabChange={handleTabChange} />
                                     </Suspense>
                                 </div>
-                            </div>
-                            <div
-                                label={
-                                    <>
-                                        <LabelPairedCopyCaptionRegularIcon
-                                            height='24px'
-                                            width='24px'
-                                            fill='var(--text-general)'
-                                        />
-                                        <Localize i18n_default_text='Copy Trading' />
-                                    </>
-                                }
-                                id='id-copy-trading'
-                            >
-                                <CopyTrading />
-                            </div>
-                            <div
-                                label={
-                                    <>
-                                        <LabelPairedChartCandlestickCaptionRegularIcon
-                                            height='24px'
-                                            width='24px'
-                                            fill='var(--text-general)'
-                                        />
-                                        <Localize i18n_default_text='Market Analyzer' />
-                                    </>
-                                }
-                                id='id-market-analyzer'
-                            >
-                                <iframe
-                                    src='https://bot-analysis-tool-belex.web.app'
-                                    title='Market Analyzer'
-                                    style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-                                    allow='clipboard-read; clipboard-write'
-                                />
                             </div>
                         </Tabs>
                         {!isDesktop && right_tab_shadow && <span className='tabs-shadow tabs-shadow--right' />}{' '}
