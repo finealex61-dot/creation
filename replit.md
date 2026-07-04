@@ -67,10 +67,12 @@ Tabs are defined in `src/constants/bot-contents.ts` → `DBOT_TABS` and rendered
 | 2 | Free Bots | id-free-bots |
 | 3 | D-Circles | id-d-circles |
 | 4 | Analysis Tool | id-analysis-tool |
-| 5 | Charts | id-charts |
-| 6 | Calculator | id-analysis |
-| 7 | Tutorials | id-tutorials |
+| 5 | Market Analyzer | id-market-analyzer |
+| 6 | Charts | id-charts |
+| 7 | Trading View | id-trading-view |
 | 8 | Copy Trading | id-copy-trading |
+| 9 | Calculator | id-analysis |
+| 10 | Tutorials | id-tutorials |
 
 ## Copy Trading
 
