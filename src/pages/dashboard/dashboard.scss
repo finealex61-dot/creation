@@ -498,8 +498,8 @@
 
 /* ── Dashboard content area background ── */
 .tab__dashboard__content {
-    background: radial-gradient(ellipse at 30% 20%, rgb(80 60 10 / 35%) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 80%, rgb(120 90 10 / 25%) 0%, transparent 50%),
+    background: radial-gradient(ellipse at 30% 20%, rgb(80 60 10 / 15%) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 80%, rgb(120 90 10 / 10%) 0%, transparent 50%),
                 var(--general-main-1) !important;
     position: relative;
 
@@ -509,8 +509,8 @@
         position: absolute;
         inset: 0;
         background-image:
-            linear-gradient(rgb(247 197 59 / 4%) 1px, transparent 1px),
-            linear-gradient(90deg, rgb(247 197 59 / 4%) 1px, transparent 1px);
+            linear-gradient(rgb(247 197 59 / 2%) 1px, transparent 1px),
+            linear-gradient(90deg, rgb(247 197 59 / 2%) 1px, transparent 1px);
         background-size: 48px 48px;
         pointer-events: none;
         z-index: 0;
@@ -535,15 +535,15 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gold-text-shine 4s linear infinite;
-        filter: drop-shadow(0 0 12px rgb(247 197 59 / 60%));
+        filter: drop-shadow(0 0 8px rgb(247 197 59 / 25%));
         font-weight: 900 !important;
         letter-spacing: 0.02em;
     }
 
     .subtitle {
-        color: rgb(247 197 59 / 75%) !important;
+        color: rgb(247 197 59 / 55%) !important;
         font-weight: 500;
-        text-shadow: 0 1px 8px rgb(247 197 59 / 20%);
+        text-shadow: 0 1px 8px rgb(247 197 59 / 10%);
     }
 }
 
@@ -551,14 +551,14 @@
 .tab__dashboard__table__images {
     background: linear-gradient(
         145deg,
-        rgb(30 24 5 / 90%) 0%,
-        rgb(50 38 5 / 80%) 100%
+        rgb(30 24 5 / 70%) 0%,
+        rgb(50 38 5 / 60%) 100%
     ) !important;
-    border: 1.5px solid rgb(247 197 59 / 35%) !important;
+    border: 1.5px solid rgb(247 197 59 / 20%) !important;
     box-shadow:
-        0 0 0 1px rgb(247 197 59 / 10%) inset,
-        0 4px 20px rgb(0 0 0 / 40%),
-        0 0 12px rgb(247 197 59 / 10%);
+        0 0 0 1px rgb(247 197 59 / 5%) inset,
+        0 4px 20px rgb(0 0 0 / 30%),
+        0 0 8px rgb(247 197 59 / 5%);
     border-radius: 1.2rem !important;
     position: relative;
     overflow: hidden;
@@ -567,7 +567,7 @@
         box-shadow 0.3s ease,
         border-color 0.3s ease !important;
 
-    /* Shimmer sweep */
+    /* Shimmer sweep — softened */
     &::before {
         content: '';
         position: absolute;
@@ -575,7 +575,7 @@
         background: linear-gradient(
             105deg,
             transparent 35%,
-            rgb(255 255 180 / 18%) 50%,
+            rgb(255 255 180 / 8%) 50%,
             transparent 65%
         );
         background-size: 200% 100%;
@@ -585,42 +585,41 @@
     }
 
     &:hover {
-        transform: translateY(-6px) scale(1.06) !important;
-        border-color: rgb(247 197 59 / 80%) !important;
+        transform: translateY(-4px) scale(1.03) !important;
+        border-color: rgb(247 197 59 / 50%) !important;
         box-shadow:
-            0 0 0 1px rgb(247 197 59 / 30%) inset,
-            0 8px 32px rgb(0 0 0 / 50%),
-            0 0 24px rgb(247 197 59 / 40%),
-            0 0 48px rgb(247 197 59 / 15%) !important;
+            0 0 0 1px rgb(247 197 59 / 15%) inset,
+            0 8px 32px rgb(0 0 0 / 40%),
+            0 0 16px rgb(247 197 59 / 20%),
+            0 0 32px rgb(247 197 59 / 8%) !important;
         cursor: pointer;
-        animation: gold-pulse-glow 1.5s ease-in-out infinite;
     }
 
-    /* SVG icons — tint them golden */
+    /* SVG icons — light golden tint */
     svg {
-        filter: drop-shadow(0 0 6px rgb(247 197 59 / 50%)) saturate(0.4) sepia(1) saturate(3) hue-rotate(-5deg);
+        filter: drop-shadow(0 0 4px rgb(247 197 59 / 25%)) saturate(0.4) sepia(1) saturate(2) hue-rotate(-5deg);
         transition: filter 0.3s ease, transform 0.3s ease;
     }
 
     &:hover svg {
-        filter: drop-shadow(0 0 12px rgb(247 197 59 / 80%)) saturate(0.4) sepia(1) saturate(4) hue-rotate(-5deg) brightness(1.15);
-        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px rgb(247 197 59 / 50%)) saturate(0.4) sepia(1) saturate(3) hue-rotate(-5deg) brightness(1.1);
+        transform: scale(1.08);
     }
 }
 
 /* ── Card labels beneath the icons ── */
 .tab__dashboard__table__block {
     .dc-text {
-        color: rgb(247 197 59 / 90%) !important;
+        color: rgb(247 197 59 / 65%) !important;
         font-weight: 600 !important;
-        text-shadow: 0 0 8px rgb(247 197 59 / 40%);
+        text-shadow: 0 0 6px rgb(247 197 59 / 15%);
         letter-spacing: 0.03em;
         transition: color 0.2s, text-shadow 0.2s;
     }
 
     &:hover .dc-text {
         color: #fff8d6 !important;
-        text-shadow: 0 0 14px rgb(247 197 59 / 70%);
+        text-shadow: 0 0 10px rgb(247 197 59 / 40%);
     }
 }
 
@@ -628,28 +627,28 @@
 .announcements__button {
     background: linear-gradient(
         135deg,
-        rgb(30 24 5 / 90%) 0%,
-        rgb(60 46 6 / 90%) 100%
+        rgb(30 24 5 / 60%) 0%,
+        rgb(60 46 6 / 60%) 100%
     ) !important;
-    border: 1.5px solid rgb(247 197 59 / 45%) !important;
-    box-shadow: 0 0 12px rgb(247 197 59 / 20%) !important;
+    border: 1.5px solid rgb(247 197 59 / 25%) !important;
+    box-shadow: 0 0 8px rgb(247 197 59 / 10%) !important;
     transition: all 0.25s ease !important;
     border-radius: 2.4rem !important;
 
-    svg path { fill: #f7c53b !important; }
+    svg path { fill: rgb(247 197 59 / 80%) !important; }
 
     .dc-text {
-        color: #f7c53b !important;
+        color: rgb(247 197 59 / 80%) !important;
         font-weight: 600 !important;
     }
 
     &:hover {
-        border-color: rgb(247 197 59 / 80%) !important;
-        box-shadow: 0 0 20px rgb(247 197 59 / 40%) !important;
+        border-color: rgb(247 197 59 / 55%) !important;
+        box-shadow: 0 0 14px rgb(247 197 59 / 20%) !important;
         background: linear-gradient(
             135deg,
-            rgb(60 46 6 / 95%) 0%,
-            rgb(90 70 8 / 95%) 100%
+            rgb(60 46 6 / 70%) 0%,
+            rgb(90 70 8 / 70%) 100%
         ) !important;
     }
 }
@@ -657,16 +656,16 @@
 /* ── Bot list section ── */
 .bot-list {
     &__title .dc-text {
-        color: #f7c53b !important;
-        text-shadow: 0 0 10px rgb(247 197 59 / 40%);
+        color: rgb(247 197 59 / 80%) !important;
+        text-shadow: 0 0 6px rgb(247 197 59 / 20%);
         font-weight: 700 !important;
     }
 
     &__header {
-        border-bottom: 1px solid rgb(247 197 59 / 30%) !important;
+        border-bottom: 1px solid rgb(247 197 59 / 18%) !important;
 
         .dc-text {
-            color: rgb(247 197 59 / 80%) !important;
+            color: rgb(247 197 59 / 55%) !important;
             font-weight: 700 !important;
             letter-spacing: 0.04em;
             text-transform: uppercase;
@@ -675,13 +674,13 @@
     }
 
     &__item {
-        border-bottom: 1px solid rgb(247 197 59 / 12%) !important;
+        border-bottom: 1px solid rgb(247 197 59 / 8%) !important;
         transition: background 0.2s ease;
 
         &:hover {
             background: linear-gradient(
                 90deg,
-                rgb(247 197 59 / 6%) 0%,
+                rgb(247 197 59 / 3%) 0%,
                 transparent 100%
             ) !important;
         }
@@ -689,17 +688,17 @@
         &__label .dc-text,
         &__time-stamp .dc-text,
         &__load-type .dc-text {
-            color: rgb(247 197 59 / 80%) !important;
+            color: rgb(247 197 59 / 55%) !important;
         }
 
         &__actions button svg {
-            fill: rgb(247 197 59 / 70%) !important;
+            fill: rgb(247 197 59 / 45%) !important;
             transition: fill 0.2s;
         }
 
         &__actions button:hover svg {
-            fill: #f7c53b !important;
-            filter: drop-shadow(0 0 6px rgb(247 197 59 / 60%));
+            fill: rgb(247 197 59 / 85%) !important;
+            filter: drop-shadow(0 0 4px rgb(247 197 59 / 35%));
         }
     }
 }
@@ -708,19 +707,19 @@
 .user-guide__button {
     background: linear-gradient(
         135deg,
-        rgb(30 24 5 / 90%) 0%,
-        rgb(60 46 6 / 90%) 100%
+        rgb(30 24 5 / 60%) 0%,
+        rgb(60 46 6 / 60%) 100%
     ) !important;
-    border: 1.5px solid rgb(247 197 59 / 40%) !important;
-    box-shadow: 0 0 10px rgb(247 197 59 / 15%) !important;
+    border: 1.5px solid rgb(247 197 59 / 22%) !important;
+    box-shadow: 0 0 6px rgb(247 197 59 / 8%) !important;
     transition: all 0.25s ease !important;
 
-    svg { fill: #f7c53b !important; }
-    .dc-text { color: #f7c53b !important; }
+    svg { fill: rgb(247 197 59 / 75%) !important; }
+    .dc-text { color: rgb(247 197 59 / 75%) !important; }
 
     &:hover {
-        border-color: rgb(247 197 59 / 75%) !important;
-        box-shadow: 0 0 18px rgb(247 197 59 / 35%) !important;
+        border-color: rgb(247 197 59 / 50%) !important;
+        box-shadow: 0 0 12px rgb(247 197 59 / 20%) !important;
     }
 }
 
